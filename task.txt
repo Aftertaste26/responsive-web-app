@@ -1,0 +1,16 @@
+[SE-2124 and SE-2125 students] Quiz #1 is HTML+CSS+JS+Git in pairs, only 1 group must be in 3s if odd number
+
+Make a responsive web app that has a drawer that can be toggled using a [Hamburger icon](https://en.wikipedia.org/wiki/Hamburger_button).  
+No need to have a sliding animation.  Put some dummy menu items on the drawer
+
+For the content, make a "Which _____ character are you?" (or other variants) quiz, which matching pictures
+Some suggestions if you can't think of anything:
+- Which Naruto character are you?
+- Which Disney villain are you?
+- Which Game of Thrones house do you belong to? (variant, house instead of character)
+
+Keep the quiz simple and # of questions short, 5-10 range should be enough.
+[SE-2124 students only] variant of the above  without a web app, maximum of 3 per group
+[SE-2125 students only]  same as [SE-2124 and SE-2125] requirements
+
+3
