@@ -1,11 +1,11 @@
 * {
   margin: 0;
   padding: 0;
-  /* border: 2px solid rgb(255, 0, 170); */
+  border: 2px solid #1ecf77;   /* comment to hide green borders */
 }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Fredoka One", cursive;
   font-size: 1.125rem;
   width: 100%;
 }
@@ -28,6 +28,11 @@ a {
   width: 50px;
 }
 
+.burger-logo:hover {
+  width: 55px;
+  transition: 0.3s;
+}
+
 .icon:hover {
   width: 60%;
   transition: 0.3s;
@@ -37,6 +42,7 @@ a {
   padding: 1em;
   display: flex;
   align-items: center;
+  justify-items: flex-start;
 }
 
 .title {
@@ -45,7 +51,7 @@ a {
 
 .title h2 {
   text-transform: uppercase;
-  vertical-align: middle;
+  font-size: 1em;
 }
 
 .sidenav {
@@ -55,9 +61,11 @@ a {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgb(3, 3, 3);
+  background-color: rgb(255, 255, 255);
   overflow-x: hidden;
   transition: 0.5s;
+  border: 2px solid #eaeceb;
+  box-shadow: 1px 2px 5px #eaeceb;
   padding-top: 60px;
 }
 
@@ -77,34 +85,43 @@ a {
   transition: margin-left 0.5s;
 }
 
+.content-container {
+  text-align: center;
+}
+
+.card-container {
+  border: 2px solid #eaeceb;
+  box-shadow: 1px 2px 5px #eaeceb;
+  width: 50%;
+  min-width: 320px;
+  margin: 25px auto 75px auto;
+  padding: 1em;
+}
+
+.buttons {
+  text-align: start;
+  padding: 1em;
+}
+
+.input {
+  padding: 1em;
+}
+
+.img-container {
+  padding: 1em;
+}
+
 .header-container {
   border: 2px solid rgb(255, 0, 170);
   height: 80px;
   display: flex;
   justify-content: space-between;
   background-color: rgb(0, 0, 0);
-  padding: 30px;
+  padding: 1em;
 }
 
 .footer-container {
   background-color: rgb(247, 247, 247);
-
-  padding: 10px;
-  position: absolute;
+  padding: 1em;
   bottom: 0px;
-}
-
-@media screen and (max-width: 600px) {
-
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 10px;
-    font-size: 20px;
-    margin-left: 10px;
-  }
-
-  .sidenav a {
-    font-size: 18px;
-  }
 }
