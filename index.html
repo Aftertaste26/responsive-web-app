@@ -12,9 +12,7 @@
   </head>
   <body>
     <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
-        >&times;</a
-      >
+      <a href="javascript:void(0)" class="closebtn">&times;</a>
       <a href="#"
         ><div class="nav-icon icon">
           <img src="assets/shuriken.png" alt="" /></div
@@ -29,45 +27,61 @@
       ></a>
     </div>
 
-    <div id="main">
+    <div class="main">
       <div class="nav-container">
-        <div class="humburger-menu" onclick="openNav()">
+        <div class="hamburger-menu">
           <img class="burger-logo" src="assets/square.png" alt="" />
         </div>
-        <div class="title"><h2>Which _____ character are you?</h2></div>
+        <div class="title"></div>
+        <h2>Hogwarts Sorting Hat Quiz</h2>
+      </div>
+    </div>
+
+    <!-- game content  -->
+    <div class="content-container">
+      <div id="quiz-start-container">
+        <div id="subtitle">FIND OUT WHICH HOUSE DO YOU BELONG TO!</div>
+        <div class="quiz-start-img">
+          <img id="flag" src="assets/gryffindor-flag.jpg" />
+          <img id="flag" src="assets/hufflepuff.jpg" />
+          <img id="flag" src="assets/ravenclaw.jpg" />
+          <img id="flag" src="assets/slytherin.jpg" />
+        </div>
+        <button id="quiz-start-btn" type="button">START</button>
+      </div>
+      <div class="questions">
+        <div class="card-container"></div>
+        <button type"button" id="nextBtn" class="hide">Next</button>
       </div>
 
-      <!-- game content  -->
-      <div class="content-container">
-        <div>WELCOME TO MAIN PAGE</div>
-        <div class="card-container">
-          <div class="title"><h2>TITLE</h2></div>
-          <div class="img-container">
-            <img src="assets/burger.png" alt="" />
-            <p>
-              Description inserted here <br />
-              caption
-            </p>
-          </div>
-          <div class="buttons">
-            <form action="">
-              <div class="input">
-                <input type="radio" name="choice" value="hi" />hi <br />
-              </div>
-              <div class="input">
-                <input type="radio" name="choice" value="hi" />hi <br />
-              </div>
-              <div class="input">
-                <input type="radio" name="choice" value="hi" />hi <br />
-              </div>
-              <div class="input">
-                <input type="radio" name="choice" value="hi" />hi <br />
-              </div>
-            </form>
-          </div>
+      <!-- <div id="card-container">
+        <p class="question">
+          Description inserted here <br />
+          caption
+        </p>
+        <div class="img-container">
+          <img src="assets/burger.png" alt="" />
+          
         </div>
+        <div class="buttons">
+          <form action="">
+            <div class="input">
+              <input type="radio" name="choice"></input>hellllo<br />
+            </div>
+            <div class="input">
+              <input type="radio" name="choice" value="hi" />hi <br />
+            </div>
+            <div class="input">
+              <input type="radio" name="choice" value="hi" />hi <br />
+            </div>
+            <div class="input">
+              <input type="radio" name="choice" value="hi" />hi <br />
+            </div>
+          </form>
+        </div>
+      </div> -->
 
-        <div class="card-container">
+      <!-- <div class="card-container">
           <div class="title"><h2>TITLE</h2></div>
           <div class="img-container">
             <img src="assets/burger.png" alt="" />
@@ -92,9 +106,9 @@
               </div>
             </form>
           </div>
-        </div>
+        </div> -->
 
-        <div class="card-container">
+      <!-- <div class="card-container">
           <div class="title"><h2>TITLE</h2></div>
           <div class="img-container">
             <img src="assets/burger.png" alt="" />
@@ -120,7 +134,7 @@
             </form>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="footer-container">
         <div>
