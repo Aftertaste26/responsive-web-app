@@ -10,74 +10,122 @@ window.onload = function onload() {
   const gifImage = document.createElement("img");
   imgContainer.className = "img-container";
   let choice;
-  let answers = []
+  let answers = [];
+  
+  const houses = [
+    {
+      house: "Gryffindor",
+      traits: [
+        "Stand up to them",
+        "Agree, and walk away, leaving them to wonder whether you are bluffing",
+        "cowardice",
+        "Draw your wand and try to discover the source of the noise",
+        "bravery",
+        "Secrets about the castle",
+      ],
+    },
+    {
+      house: "Ravenclaw",
+      traits: [
+        "Let them be, I have better things to do than waste my time on those people",
+        "Ask what makes them think so",
+        "laziness",
+        "Withdraw into the shadows to await developments",
+        "intelligence",
+        "Every area of magic I can",
+      ],
+    },
+    {
+      house: "Hufflepuff",
+      traits: [
+        "Runaway and cry, but never tell anyone about them",
+        "Tell them that you are worried about their mental health, and offer to call a doctor",
+        "dishonesty",
+        "Proceed with caution",
+        "kindness",
+        "All about magical creatures, and how to befriend/care for them",
+      ],
+    },
+    {
+      house: "Slytherin",
+      traits: [
+        "Leave them to what they're doing, I'll tell my father, then plan revenge",
+        "Agree, and ask whether they’d like a free sample of a jinx",
+        "stupidity",
+        "Draw your wand and stand your ground",
+        "ambition",
+        "Hexes and jinxes",
+      ],
+    },
+  ];
 
   const quizItems = [
     {
       question: "How would you react if someone picks on you and your friend??",
-      choices: [
-        "Stand up to them", //G
-        "Leave them to what they're doing, I'll tell my father, then plan revenge", //S
-        "Let them be, I have better things to do than waste my time on those people.", //R
-        "Runaway and cry, but never tell anyone about them.", //H
-      ],
+      // choices: [
+      //   "Stand up to them", //G
+      //   "Leave them to what they're doing, I'll tell my father, then plan revenge", //S
+      //   "Let them be, I have better things to do than waste my time on those people", //R
+      //   "Runaway and cry, but never tell anyone about them", //H
+      // ],
       image: "assets/image-1.gif",
     },
     {
       question:
         "A Muggle confronts you and says that they are sure you are a witch or wizard. Do you:",
-      choices: [
-        "Ask what makes them think so?", //R
-        "Agree, and ask whether they’d like a free sample of a jinx?", //S
-        "Agree, and walk away, leaving them to wonder whether you are bluffing?", //G
-        "Tell them that you are worried about their mental health, and offer to call a doctor.", //H
-      ],
+      // choices: [
+      //   "Ask what makes them think so", //R
+      //   "Agree, and ask whether they’d like a free sample of a jinx?", //S
+      //   "Agree, and walk away, leaving them to wonder whether you are bluffing?", //G
+      //   "Tell them that you are worried about their mental health, and offer to call a doctor", //H
+      // ],
       image: "assets/image-2.1.gif",
     },
     {
       question: "What fault do you notice in people that bother you the most?",
-      choices: [
-        "stupidity", //S
-        "dishonesty", //H
-        "cowardice", //G
-        "laziness", //R
-      ],
+      // choices: [
+      //   "stupidity", //S
+      //   "dishonesty", //H
+      //   "cowardice", //G
+      //   "laziness", //R
+      // ],
       image: "assets/image-3.gif",
     },
     {
       question:
         "Late at night, walking alone down the street, you hear a peculiar cry that you believe to have a magical source. What would you do?",
-      choices: [
-        "Proceed with caution", //H
-        "Draw your wand and try to discover the source of the noise", //G
-        "Withdraw into the shadows to await developments", //R
-        "Draw your wand and stand your ground", //S
-      ],
+      // choices: [
+      //   "Proceed with caution", //H
+      //   "Draw your wand and try to discover the source of the noise", //G
+      //   "Withdraw into the shadows to await developments", //R
+      //   "Draw your wand and stand your ground", //S
+      // ],
       image: "assets/image-4.gif",
     },
     {
       question: "What's the best trait do you think you have?",
-      choices: [
-        "intelligence", //R
-        "bravery", //G
-        "kindness", //H
-        "ambition", //S
-      ],
+      // choices: [
+      //   "intelligence", //R
+      //   "bravery", //G
+      //   "kindness", //H
+      //   "ambition", //S
+      // ],
       image: "assets/image-5.gif",
     },
     {
       question: "What are you most looking forward to learning at Hogwarts?",
-      choices: [
-        "Secrets about the castle", //G
-        "Every area of magic I can", //R
-        "All about magical creatures, and how to befriend/care for them", //H
-        "Hexes and jinxes", //S
-      ],
+      // choices: [
+      //   "Secrets about the castle", //G
+      //   "Every area of magic I can", //R
+      //   "All about magical creatures, and how to befriend/care for them", //H
+      //   "Hexes and jinxes", //S
+      // ],
       image: "assets/image-6.gif",
     },
   ];
 
   let count = 0;
+  const random = (min, max) => Math.trunc(Math.random() * (max - min + 1) + min)
 
   const generateCard = () => {
     const question = document.createElement("p");
@@ -88,7 +136,7 @@ window.onload = function onload() {
 
     question.innerHTML = quizItems[count].question;
     nextBtn.innerHTML = "Next";
-    for (let i = 0; i < quizItems[count].choices.length; i++) {
+    for (let i = 0; i < houses.length; i++) {
       const inputContainer = document.createElement("div");
       const radio = document.createElement("input");
       const choice = document.createElement("p");
@@ -100,7 +148,7 @@ window.onload = function onload() {
 
       choice.setAttribute("class", "choice");
 
-      choice.innerHTML = quizItems[count].choices[i];
+      choice.innerHTML = houses[i].traits[count];
       gifImage.setAttribute("src", quizItems[count].image);
       inputContainer.append(radio, choice);
       choicesContainer.appendChild(inputContainer);
@@ -127,24 +175,33 @@ window.onload = function onload() {
   };
 
   const next = () => {
-    answers.push(choice)
-    console.log(answers)
+    answers.push(choice);
     count++;
     cardContainer.innerHTML = "";
     showCard();
   };
 
   const handleClick = (event) => {
-    // console.log(event.target);
     if (event.target.getAttribute("class") === "radio") {
       const selectedAnswer = event.target.parentElement.children[1].innerHTML;
       console.log(selectedAnswer);
-      // console.log(count);
-      const index = quizItems[count].choices.indexOf(selectedAnswer);
-      choice = index;
-      console.log(choice)
+     
+      choice = houses.findIndex(house => house.traits.includes(selectedAnswer));
     }
   };
+
+  // const randomizeChoices = () => {
+  //   let choices = []
+  //   for(let i = 0; i < houses.length; i++){
+  //     choices.push(houses[i].traits[count])
+  //   }
+  // }
+
+  const getResult = () => {
+    
+    answers.reduce((prev, current) => prev === current ?  )
+  }
+  
   const sort = () => {
     const loadingText = document.createElement("p");
     nextBtn.className = "hide";
@@ -175,6 +232,8 @@ window.onload = function onload() {
     showCard();
     // generateCard();
   };
+
+
 
   hamburgerIcon.addEventListener("click", openNav);
   closeIcon.addEventListener("click", closeNav);
