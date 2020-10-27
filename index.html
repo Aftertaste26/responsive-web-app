@@ -5,148 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RESPONSIVE WEB APP</title>
     <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn">&times;</a>
-      <a href="#"
-        ><div class="nav-icon icon">
-          <img src="assets/shuriken.png" alt="" /></div
-      ></a>
-      <a href="#"
-        ><div class="nav-icon icon">
-          <img src="assets/castle.png" alt="" /></div
-      ></a>
-      <a href="#"
-        ><div class="nav-icon icon">
-          <img src="assets/star.png" alt="" /></div
-      ></a>
-    </div>
-
-    <div id="main" class="main">
-      <div class="nav-container">
-        <div class="hamburger-menu">
-          <img class="burger-logo" src="assets/square.png" alt="" />
+    <div id="sideNav">
+      <a href="javascript:void(0)" class="closebtn"><div>&times;</div></a>
+      <a id="menu-content" href="#">
+        <div class="nav-icon icon">
+          <img src="assets/icons/castle.png" alt="" />
+          Home
         </div>
-        <div class="title"></div>
-        <h2>Hogwarts Sorting Hat Quiz</h2>
+        </a>
+      <a id="menu-content" href="#"
+        ><div class="nav-icon icon">
+          <img src="assets/icons/hat-white.png" alt="" />
+          Sorting Hat  
+        </div>
+        </a>
+      <a id="menu-content" href="#">
+        <div class="nav-icon icon">
+          <img src="assets/icons/about-white.png" alt="" />
+          About
+          </div>
+        </a>
+    </div>
+  
+    <div id="main" class="main">
+      
+      <div class="header-container">
+        <div class="hamburger-menu">
+          <img id="menu-icon" src="assets/menu-white.png" alt="">
+          <!-- <img class="burger-logo" src="assets/square.png" alt="" /> -->
+        </div>
+        <div class="title">
+        <h2>Sorting hat quiz</h2>
       </div>
     </div>
-
     <!-- game content  -->
     <div class="content-container">
       <div id="quiz-start-container">
-        <div id="subtitle">FIND OUT WHICH HOUSE DO YOU BELONG TO!</div>
+        <div id="subtitle">which house do you belong?</div>
         <div class="quiz-start-img">
           <img id="flag" src="assets/gryffindor-flag.jpg" />
           <img id="flag" src="assets/hufflepuff.jpg" />
           <img id="flag" src="assets/ravenclaw.jpg" />
           <img id="flag" src="assets/slytherin.jpg" />
         </div>
-        <button id="quiz-start-btn" type="button">START</button>
+        <button id="quiz-start-btn" type="button">Find out</button>
       </div>
+
       <div class="questions">
         <div class="card-container"></div>
         <button type"button" id="nextBtn" class="hide">Next</button>
       </div>
-
-      <!-- <div id="card-container">
-        <p class="question">
-          Description inserted here <br />
-          caption
-        </p>
-        <div class="img-container">
-          <img src="assets/burger.png" alt="" />
-          
-        </div>
-        <div class="buttons">
-          <form action="">
-            <div class="input">
-              <input type="radio" name="choice"></input>hellllo<br />
-            </div>
-            <div class="input">
-              <input type="radio" name="choice" value="hi" />hi <br />
-            </div>
-            <div class="input">
-              <input type="radio" name="choice" value="hi" />hi <br />
-            </div>
-            <div class="input">
-              <input type="radio" name="choice" value="hi" />hi <br />
-            </div>
-          </form>
-        </div>
-      </div> -->
-
-      <!-- <div class="card-container">
-          <div class="title"><h2>TITLE</h2></div>
-          <div class="img-container">
-            <img src="assets/burger.png" alt="" />
-            <p>
-              Description inserted here <br />
-              caption
-            </p>
-          </div>
-          <div class="buttons">
-            <form action="">
-              <div class="input">
-                <input type="radio" name="choice" value="hi" />hi <br />
-              </div>
-              <div class="input">
-                <input type="radio" name="choice" value="hi" />hi <br />
-              </div>
-              <div class="input">
-                <input type="radio" name="choice" value="hi" />hi <br />
-              </div>
-              <div class="input">
-                <input type="radio" name="choice" value="hi" />hi <br />
-              </div>
-            </form>
-          </div>
-        </div> -->
-
-      <!-- <div class="card-container">
-          <div class="title"><h2>TITLE</h2></div>
-          <div class="img-container">
-            <img src="assets/burger.png" alt="" />
-            <p>
-              Description inserted here <br />
-              caption
-            </p>
-          </div>
-          <div class="buttons">
-            <form action="">
-              <div class="input">
-                <input type="radio" name="choice" value="hi" />hi <br />
-              </div>
-              <div class="input">
-                <input type="radio" name="choice" value="hi" />hi <br />
-              </div>
-              <div class="input">
-                <input type="radio" name="choice" value="hi" />hi <br />
-              </div>
-              <div class="input">
-                <input type="radio" name="choice" value="hi" />hi <br />
-              </div>
-            </form>
-          </div>
-        </div>
-      </div> -->
-
-      <div class="footer-container">
-        <div>
-          Icons made by
-          <a href="https://smashicons.com/" title="Smashicons">Smashicons</a>
-          from
-          <a href="https://www.flaticon.com/" title="Flaticon"
-            >www.flaticon.com</a
-          >
-        </div>
-      </div>
     </div>
+    <div id="black-overlay" class="hide"></div>
+    <!-- <div class="footer-container">
+      <div>
+        Icons made by
+        <a href="https://smashicons.com/" title="Smashicons">Smashicons</a>
+        from
+        <a href="https://www.flaticon.com/" title="Flaticon"
+          >www.flaticon.com</a
+        >
+      </div>
+    </div> -->
+  </div>
+  
   </body>
   <script src="script.js"></script>
 </html>

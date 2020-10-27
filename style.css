@@ -1,89 +1,152 @@
 * {
   margin: 0;
   padding: 0;
-  border: 2px solid #1ecf77; /* comment to hide green borders */
+  /* border: 2px solid #1ecf77; comment to hide green borders */
 }
 
 body {
-  font-family: "Fredoka One", cursive;
-  font-size: 1.125rem;
+  /* font-family: "Fredoka One", cursive;
+  font-size: 1.125rem; */
+  /* width: 100%; */
+}
+
+@font-face {
+  font-family: lato-italic;
+  src: url(assets/fonts/Lato-LightItalic.ttf);
+}
+
+@font-face {
+  font-family: lato;
+  src: url(assets/fonts/Lato-Regular.ttf);
+}
+
+button:focus {
+  outline: none;
+}
+
+#black-overlay.hide {
+  visibility: hidden;
+}
+
+#black-overlay {
+  position: absolute;
+  top: 0;
   width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: background-color 0.2s;
 }
 
-.icon > img {
-  max-width: 100%;
+#menu-icon {
+  width: 20px;
 }
 
-a {
-  font-size: 1rem;
+.hamburger-menu {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  padding: 12px;
+  margin-right: 5px;
+
+}
+
+.hamburger-menu:hover {
+  transition: 0.3s;
+  background-color: #530068;
+}
+
+#sideNav {
+  height: 100%;
+  position: fixed;
+  width: 0px;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background-color: #530068;
+  overflow-x: hidden;
+  transition: width 0.5s;
+  box-shadow: 5px 0 30px #00000085;
+  padding-top: 60px;
+}
+
+#sideNav a {
+  text-decoration: none;
+  font-family: "Cinzel", serif;
+  font-size: 20px;
+  color: white;
+  transition: 0.3s;
+}
+
+#sideNav #menu-content {
+  display: block;
+  padding: 10px 8px 10px 32px;
+}
+
+#sideNav .closebtn > div {
+  padding: 10px 10px 10px 15px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: absolute;
+  top: 0px;
+  font-size: 45px;
+  border-radius: 0 0 0 50%;
+}
+
+#sideNav .closebtn{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+#sideNav :hover {
+  transition: 0.3s;
+  background-color: #390047;
+
 }
 
 .nav-icon {
-  width: 50%;
-  margin: auto;
-  padding: 15%;
+  display: flex;
+  align-items: center;
 }
 
-.burger-logo {
-  width: 50px;
+.icon > img {
+  width: 30px;
+  margin-right: 10px;
 }
 
-.burger-logo:hover {
-  width: 55px;
-  transition: 0.3s;
+#main {
+  /* transition: margin-left 0.5s; */
 }
 
-.icon:hover {
-  width: 60%;
-  transition: 0.3s;
-}
-
-.nav-container {
-  padding: 1em;
+.header-container {
+  background-color: #62007a;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.144);
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-items: flex-start;
 }
 
-.title {
-  padding: 1em;
+.title > h2 {
+  font-size: 15pt;
+  font-family: 'Cinzel', serif;
+  color: white;
 }
 
-.title h2 {
-  text-transform: uppercase;
-  font-size: 1em;
+.content-container {
+  margin-top: 35px;
 }
 
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: rgb(255, 255, 255);
-  overflow-x: hidden;
-  transition: 0.5s;
-  border: 2px solid #eaeceb;
-  box-shadow: 1px 2px 5px #eaeceb;
-  padding-top: 60px;
+#subtitle {
+  font-size: 20pt;
+  font-family: "Cinzel", serif;
+  line-height: 19pt;
 }
 
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-#main {
-  transition: margin-left 0.5s;
-}
 
 #card-container.hide {
   visibility: hidden;
@@ -111,26 +174,23 @@ a {
   padding: 1em;
 }
 
-.header-container {
+/* .header-container {
   border: 2px solid rgb(255, 0, 170);
   height: 80px;
   display: flex;
   justify-content: space-between;
   background-color: rgb(0, 0, 0);
   padding: 1em;
-}
+} */
 
-.footer-container {
+/* .footer-container {
   background-color: rgb(247, 247, 247);
   padding: 1em;
   bottom: 0px;
-}
-
-#subtitle {
-  font-size: 20pt;
-}
+} */
 
 .quiz-start-img {
+  margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -138,15 +198,34 @@ a {
 }
 
 #flag {
-  border: 1px solid red;
   margin: 5px;
-  width: 35vmin;
+  width: 40vmin;
 }
 
+/* #flag:hover {
+  transition: 0.2s;
+  width: 43vmin;
+} */
+
 #quiz-start-btn {
-  width: 100px;
-  padding: 10px;
+  font-size: 15pt;
+  margin-top: 25px;
+  width: 150px;
+  padding: 15px;
   border-radius: 8px;
+  text-transform: uppercase;
+  font-family: lato, sans-serif;
+  font-weight: 700;
+  color: white;
+  border: 1px solid #390047;
+  background-color: #690083;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.226);
+}
+
+#quiz-start-btn:hover {
+  background-color: #390047;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 #quiz-start-container {
@@ -168,5 +247,12 @@ a {
 }
 
 #nextBtn {
-  
+}
+
+@media screen and (min-width: 530px){
+  #subtitle {
+    font-size: 30pt;
+    font-family: "Cinzel", serif;
+    line-height: 28pt;
+  }
 }
