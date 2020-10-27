@@ -3,10 +3,6 @@ window.onload = function onload() {
   const closeIcon = document.querySelector(".closebtn");
   const startButton = document.querySelector("#quiz-start-btn");
 
-  const quizStat = {
-    chosen: {},
-  };
-
   const houses = {
     gryffindor: {
       name: "Gryffindor",
@@ -61,165 +57,170 @@ window.onload = function onload() {
       logo: "assets/",
     },
   };
-
-  const quizItems = [
-    {
-      question: "How would you react if someone picks on you and your friend?",
-      choices: [
-        {
-          value: houses.gryffindor.name,
-          description: houses.gryffindor.traits[0],
-        },
-        {
-          value: houses.slytherin.name,
-          description: houses.slytherin.traits[0],
-        },
-        {
-          value: houses.ravenclaw.name,
-          description: houses.ravenclaw.traits[0],
-        },
-        {
-          value: houses.hufflepuff.name,
-          description: houses.hufflepuff.traits[0],
-        },
-      ],
-      image: "assets/image-1.gif",
-    },
-    {
-      question:
-        "A Muggle confronts you and says that they are sure you are a witch or wizard. Do you:",
-      choices: [
-        {
-          value: houses.gryffindor.name,
-          description: houses.gryffindor.traits[1],
-        },
-        {
-          value: houses.slytherin.name,
-          description: houses.slytherin.traits[1],
-        },
-        {
-          value: houses.ravenclaw.name,
-          description: houses.ravenclaw.traits[1],
-        },
-        {
-          value: houses.hufflepuff.name,
-          description: houses.hufflepuff.traits[1],
-        },
-      ],
-      image: "assets/image-2.1.gif",
-    },
-    {
-      question: "What fault do you notice in people that bother you the most?",
-      choices: [
-        {
-          value: houses.gryffindor.name,
-          description: houses.gryffindor.traits[2],
-        },
-        {
-          value: houses.slytherin.name,
-          description: houses.slytherin.traits[2],
-        },
-        {
-          value: houses.ravenclaw.name,
-          description: houses.ravenclaw.traits[2],
-        },
-        {
-          value: houses.hufflepuff.name,
-          description: houses.hufflepuff.traits[2],
-        },
-      ],
-      image: "assets/image-3.gif",
-    },
-    {
-      question: "What's the best trait do you think you have?",
-      choices: [
-        {
-          value: houses.gryffindor.name,
-          description: houses.gryffindor.traits[3],
-        },
-        {
-          value: houses.slytherin.name,
-          description: houses.slytherin.traits[3],
-        },
-        {
-          value: houses.ravenclaw.name,
-          description: houses.ravenclaw.traits[3],
-        },
-        {
-          value: houses.hufflepuff.name,
-          description: houses.hufflepuff.traits[3],
-        },
-      ],
-      image: "assets/image-5.gif",
-    },
-    {
-      question: "What are you most looking forward to learning at Hogwarts?",
-      choices: [
-        {
-          value: houses.gryffindor.name,
-          description: houses.gryffindor.traits[4],
-        },
-        {
-          value: houses.slytherin.name,
-          description: houses.slytherin.traits[4],
-        },
-        {
-          value: houses.ravenclaw.name,
-          description: houses.ravenclaw.traits[4],
-        },
-        {
-          value: houses.hufflepuff.name,
-          description: houses.hufflepuff.traits[4],
-        },
-      ],
-      image: "assets/image-6.gif",
-    },
-    {
-      question: "Which nightmare would frighten you most?",
-      choices: [
-        {
-          value: houses.gryffindor.name,
-          description: houses.gryffindor.traits[5],
-        },
-        {
-          value: houses.slytherin.name,
-          description: houses.slytherin.traits[5],
-        },
-        {
-          value: houses.ravenclaw.name,
-          description: houses.ravenclaw.traits[5],
-        },
-        {
-          value: houses.hufflepuff.name,
-          description: houses.hufflepuff.traits[5],
-        },
-      ],
-      image: "assets/dementors.gif",
-    },
-    {
-      question:
-        "Late at night, walking alone down the street, you hear a peculiar cry that you believe to have a magical source. What would you do?",
-      choices: [
-        {
-          value: houses.gryffindor.name,
-          description: houses.gryffindor.traits[6],
-        },
-        {
-          value: houses.slytherin.name,
-          description: houses.slytherin.traits[6],
-        },
-        {
-          value: houses.ravenclaw.name,
-          description: houses.ravenclaw.traits[6],
-        },
-        {
-          value: houses.hufflepuff.name,
-          description: houses.hufflepuff.traits[6],
-        },
-      ],
-      image: "assets/image-4.gif",
-    },
-  ];
+  const quiz = {
+    chosen: {},
+    questions: [
+      {
+        question:
+          "How would you react if someone picks on you and your friend?",
+        choices: [
+          {
+            value: houses.gryffindor.name,
+            description: houses.gryffindor.traits[0],
+          },
+          {
+            value: houses.slytherin.name,
+            description: houses.slytherin.traits[0],
+          },
+          {
+            value: houses.ravenclaw.name,
+            description: houses.ravenclaw.traits[0],
+          },
+          {
+            value: houses.hufflepuff.name,
+            description: houses.hufflepuff.traits[0],
+          },
+        ],
+        image: "assets/image-1.gif",
+      },
+      {
+        question:
+          "A Muggle confronts you and says that they are sure you are a witch or wizard. Do you:",
+        choices: [
+          {
+            value: houses.gryffindor.name,
+            description: houses.gryffindor.traits[1],
+          },
+          {
+            value: houses.slytherin.name,
+            description: houses.slytherin.traits[1],
+          },
+          {
+            value: houses.ravenclaw.name,
+            description: houses.ravenclaw.traits[1],
+          },
+          {
+            value: houses.hufflepuff.name,
+            description: houses.hufflepuff.traits[1],
+          },
+        ],
+        image: "assets/image-2.1.gif",
+      },
+      {
+        question:
+          "What fault do you notice in people that bother you the most?",
+        choices: [
+          {
+            value: houses.gryffindor.name,
+            description: houses.gryffindor.traits[2],
+          },
+          {
+            value: houses.slytherin.name,
+            description: houses.slytherin.traits[2],
+          },
+          {
+            value: houses.ravenclaw.name,
+            description: houses.ravenclaw.traits[2],
+          },
+          {
+            value: houses.hufflepuff.name,
+            description: houses.hufflepuff.traits[2],
+          },
+        ],
+        image: "assets/image-3.gif",
+      },
+      {
+        question: "What's the best trait do you think you have?",
+        choices: [
+          {
+            value: houses.gryffindor.name,
+            description: houses.gryffindor.traits[3],
+          },
+          {
+            value: houses.slytherin.name,
+            description: houses.slytherin.traits[3],
+          },
+          {
+            value: houses.ravenclaw.name,
+            description: houses.ravenclaw.traits[3],
+          },
+          {
+            value: houses.hufflepuff.name,
+            description: houses.hufflepuff.traits[3],
+          },
+        ],
+        image: "assets/image-5.gif",
+      },
+      {
+        question: "What are you most looking forward to learning at Hogwarts?",
+        choices: [
+          {
+            value: houses.gryffindor.name,
+            description: houses.gryffindor.traits[4],
+          },
+          {
+            value: houses.slytherin.name,
+            description: houses.slytherin.traits[4],
+          },
+          {
+            value: houses.ravenclaw.name,
+            description: houses.ravenclaw.traits[4],
+          },
+          {
+            value: houses.hufflepuff.name,
+            description: houses.hufflepuff.traits[4],
+          },
+        ],
+        image: "assets/image-6.gif",
+      },
+      {
+        question: "Which nightmare would frighten you most?",
+        choices: [
+          {
+            value: houses.gryffindor.name,
+            description: houses.gryffindor.traits[5],
+          },
+          {
+            value: houses.slytherin.name,
+            description: houses.slytherin.traits[5],
+          },
+          {
+            value: houses.ravenclaw.name,
+            description: houses.ravenclaw.traits[5],
+          },
+          {
+            value: houses.hufflepuff.name,
+            description: houses.hufflepuff.traits[5],
+          },
+        ],
+        image: "assets/dementors.gif",
+      },
+      {
+        question:
+          "Late at night, walking alone down the street, you hear a peculiar cry that you believe to have a magical source. What would you do?",
+        choices: [
+          {
+            value: houses.gryffindor.name,
+            description: houses.gryffindor.traits[6],
+          },
+          {
+            value: houses.slytherin.name,
+            description: houses.slytherin.traits[6],
+          },
+          {
+            value: houses.ravenclaw.name,
+            description: houses.ravenclaw.traits[6],
+          },
+          {
+            value: houses.hufflepuff.name,
+            description: houses.hufflepuff.traits[6],
+          },
+        ],
+        image: "assets/image-4.gif",
+      },
+    ],
+    questionIndex: 0,
+  };
 
   const generateCard = (description, imageSource, choices) => {
     const cardContainer = document.createElement("div");
@@ -268,45 +269,88 @@ window.onload = function onload() {
 
   const generateQuizCard = () => {
     const quizCards = document.createElement("div");
-    const button = document.createElement("button");
-    button.innerHTML = "next";
     quizCards.id = "quizCards";
     quizCards.className = "quizCards-container";
-    quizCards.appendChild(button);
     return quizCards;
   };
 
-  const choicesClicked = ({ index, quizItems }) => (event) => {
+  const choicesClicked = (quizData) => (event) => {
     if (event.target.tagName == "INPUT") {
-      quizStat.chosen[index] = (event.target.value);
-      console.log("hllo", event.target.value);
-      console.log(quizStat);
-    }
+      quizData.chosen[quizData.questionIndex] = event.target.value;
 
-    if (event.target.tagName == "BUTTON") {
-      startQiuz({ index: index + 1, quizItems: quizItems });
-      console.log(event.target);
-      console.log("hllo", event.target.value);
-      quizStat.chosen[index] = answer;
-      console.log(quizStat.chosen);
+      if (quizData.questionIndex != quizData.questions.length - 1) {
+        quizData.questionIndex += 1;
+        startQiuz(quizData);
+      }
     }
   };
 
-  const startQiuz = ({ index, quizItems }) => {
-    const quiz = quizItems[index];
+  const startQiuz = (quizData) => {
+    const quiz = quizData.questions[quizData.questionIndex];
     const quizCards = document.querySelector("#quizCards");
-    const card = generateCard(quiz.question, quiz.image, quiz.choices);
+    const card = generateCard(
+      ` ${quizData.questionIndex}${quiz.question}`,
+      quiz.image,
+      quiz.choices
+    );
 
     quizCards.childNodes.forEach((child) => {
       if (child.className === "card-container") child.remove();
     });
 
-    quizCards.appendChild(card);
-    quizCards.addEventListener(
-      "click",
-      choicesClicked({ index: index, quizItems: quizItems })
-    );
+    card.addEventListener("click", choicesClicked(quizData));
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    /* 
+# needs refactor 
+# fix existing bug.
+*/
+
+    if (quizData.questionIndex == 6) {
+      card.removeEventListener("click", choicesClicked(quizData));
+      quizCards.innerHTML = `<h1>${JSON.stringify(
+        tally(Object.values(quizData.chosen))
+      )}</h1>`;
+    } else if (quizData.questionIndex < 5) {
+      quizCards.appendChild(card);
+    } else {
+      console.log(
+        "has a tie",
+        hasTie(R.map((x) => x.count, tally(Object.values(quizData.chosen))))
+      );
+
+      const tie = hasTie(
+        R.map((x) => x.count, tally(Object.values(quizData.chosen)))
+      );
+      if (tie) {
+        quizCards.appendChild(card);
+      } else {
+        quizCards.innerHTML = `<h1>${JSON.stringify(
+          tally(Object.values(quizData.chosen))
+        )}</h1>`;
+      }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
   };
+
+  const hasTie = (list) => {
+    const newList = [...list];
+    newList.sort((x, y) => y - x);
+    const highest = newList[0];
+    console.log(list.filter((x) => x == highest));
+    return list.filter((x) => x == highest).length > 1;
+  };
+  const tally = (list) =>
+    list.reduce(
+      (acc, element) =>
+        acc.some((x) => x.value == element)
+          ? acc.map((x) =>
+              x.value == element ? { value: x.value, count: (x.count += 1) } : x
+            )
+          : [...acc, { value: element, count: 1 }],
+      []
+    );
 
   const openNav = () => {
     document.getElementById("mySidenav").style.width = "100px";
@@ -320,13 +364,14 @@ window.onload = function onload() {
 
   const proceedToQuiz = () => {
     console.log("proceeding to quiz");
+
     const quizStartContainer = document.querySelector("#quiz-start-container");
     quizStartContainer.style.display = "none";
 
     const contentContainer = document.querySelector("#content-container");
     contentContainer.appendChild(generateQuizCard());
 
-    startQiuz({ index: 0, quizItems: quizItems });
+    startQiuz(quiz);
   };
 
   hamburgerIcon.addEventListener("click", openNav);
