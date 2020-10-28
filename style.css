@@ -1,13 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  /* border: 2px solid #1ecf77; comment to hide green borders */
-}
-
-body {
-  /* font-family: "Fredoka One", cursive;
-  font-size: 1.125rem; */
-  /* width: 100%; */
 }
 
 @font-face {
@@ -20,8 +13,34 @@ body {
   src: url(assets/fonts/Lato-Regular.ttf);
 }
 
+body {
+  font-family: lato, sans-serif;
+}
+
 button:focus {
   outline: none;
+}
+
+
+button {
+  font-size: 15pt;
+  margin-top: 25px;
+  width: 180px;
+  padding: 15px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-family: lato, sans-serif;
+  font-weight: 700;
+  color: white;
+  border: 1px solid #390047;
+  background-color: #690083;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.226);
+}
+
+button:hover {
+  background-color: #390047;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 #black-overlay.hide {
@@ -35,10 +54,6 @@ button:focus {
   height: 100%;
   z-index: 1;
   transition: background-color 0.2s;
-}
-
-#menu-icon {
-  width: 20px;
 }
 
 .hamburger-menu {
@@ -77,9 +92,24 @@ button:focus {
   transition: 0.3s;
 }
 
+#menu-icon {
+  width: 20px;
+}
+
 #sideNav #menu-content {
   display: block;
   padding: 10px 8px 10px 32px;
+}
+
+#sideNav .closebtn{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+#sideNav :hover {
+  transition: 0.3s;
+  background-color: #390047;
 }
 
 #sideNav .closebtn > div {
@@ -96,18 +126,6 @@ button:focus {
   border-radius: 0 0 0 50%;
 }
 
-#sideNav .closebtn{
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-}
-
-#sideNav :hover {
-  transition: 0.3s;
-  background-color: #390047;
-
-}
-
 .nav-icon {
   display: flex;
   align-items: center;
@@ -116,10 +134,6 @@ button:focus {
 .icon > img {
   width: 30px;
   margin-right: 10px;
-}
-
-#main {
-  /* transition: margin-left 0.5s; */
 }
 
 .header-container {
@@ -145,50 +159,70 @@ button:focus {
   font-size: 20pt;
   font-family: "Cinzel", serif;
   line-height: 19pt;
-}
-
-
-#card-container.hide {
-  visibility: hidden;
+  text-align: center;
 }
 
 .card-container {
   text-align: center;
   border: 2px solid #eaeceb;
   box-shadow: 1px 2px 5px #eaeceb;
-  width: 50%;
-  min-width: 320px;
+  width: 60%;
   margin: 25px auto 75px auto;
   padding: 1em;
 }
 
 .choices-container {
-  text-align: start;
-  padding: 1em;
+  padding: 0 20px 0 20px;
 }
 
 .input-container {
-  padding: 1em;
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #ebebeb;
 }
 
 .img-container {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.img-container > img {
+  width: 100%;
+}
+
+.radio-style {
+  padding-top: 1px;
+}
+
+.question{
+  padding: 5px;
+  font-size: 15pt;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+}
+
+.container {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  text-transform: capitalize;
+  width: 60%;
+  font-size: 15pt;
+  /* min-width: 320px; */
+  margin: 25px auto 75px auto;
   padding: 1em;
 }
 
-/* .header-container {
-  border: 2px solid rgb(255, 0, 170);
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-  background-color: rgb(0, 0, 0);
-  padding: 1em;
-} */
+.container > img {
+  width: 280px;
+}
 
-/* .footer-container {
-  background-color: rgb(247, 247, 247);
-  padding: 1em;
-  bottom: 0px;
-} */
+#sortingHat {
+  width: 100%;
+}
+
+#next {
+  margin-bottom: 25px;
+}
 
 .quiz-start-img {
   margin-top: 15px;
@@ -203,34 +237,10 @@ button:focus {
   width: 40vmin;
 }
 
-/* #flag:hover {
-  transition: 0.2s;
-  width: 43vmin;
-} */
-
-#quiz-start-btn {
-  font-size: 15pt;
-  margin-top: 25px;
-  width: 150px;
-  padding: 15px;
-  border-radius: 8px;
-  text-transform: uppercase;
-  font-family: lato, sans-serif;
-  font-weight: 700;
-  color: white;
-  border: 1px solid #390047;
-  background-color: #690083;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.226);
-}
-
-#quiz-start-btn:hover {
-  background-color: #390047;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
 #quiz-start-container {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #quiz-start-container.hide {
@@ -238,22 +248,29 @@ button:focus {
   position: absolute;
 }
 
+.quiz-start-img {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
 .choice {
+  text-align: left;
   margin-left: 10px;
   display: inline-block;
-}
-
-#nextBtn.hide {
-  visibility: hidden;
-}
-
-#nextBtn {
+  font-size: 14pt;
+  line-height: 16pt;
 }
 
 @media screen and (min-width: 530px){
   #subtitle {
     font-size: 30pt;
-    font-family: "Cinzel", serif;
     line-height: 28pt;
   }
+
+  .question{
+    font-size: 18pt;
+  }
+
 }
