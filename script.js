@@ -2,6 +2,7 @@ window.onload = function onload() {
   const hamburgerIcon = document.querySelector(".hamburger-menu");
   const closeIcon = document.querySelector(".closebtn");
   const startButton = document.querySelector("#quiz-start-btn");
+  const currentPage = document.querySelector("#currentPage")
 
   const houses = {
     gryffindor: {
@@ -403,5 +404,6 @@ console.log(tallyResults)
 
   hamburgerIcon.addEventListener("click", openNav);
   closeIcon.addEventListener("click", closeNav);
+  currentPage.addEventListener("click", closeNav);
   startButton.addEventListener("click", proceedToQuiz);
 };
