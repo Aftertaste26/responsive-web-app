@@ -15,7 +15,8 @@ window.onload = function onload() {
         "An eye at the keyhole",
         "Draw your wand and try to discover the source of the noise",
       ],
-      logo: "assets/",
+      logo: "assets/gryffindor.jpg",
+      message: "You belong in Gryffindor,<br>where dwell the brave at heart.<br>Their daring nerve and chivalry<br>set Gryffindor apart."
     },
     ravenclaw: {
       name: "Ravenclaw",
@@ -23,12 +24,13 @@ window.onload = function onload() {
         "Let them be, I have better things to do than waste my time on those people",
         "Ask what makes them think so",
         "Laziness",
-        "intelligence",
+        "Intelligence",
         "Every area of magic I can",
         "Standing on top of something very high",
         "Withdraw into the shadows to await developments",
       ],
-      logo: "assets/",
+      logo: "assets/ravenclaw.jpg",
+      message: "You belong to Ravenclaw!<br>You have a ready mind,<br>where those of wit and learning<br>will always find their kind."
     },
     hufflepuff: {
       name: "Hufflepuff",
@@ -41,7 +43,8 @@ window.onload = function onload() {
         "Your friends nor your family have any idea who you are",
         "Proceed with caution",
       ],
-      logo: "assets/",
+      logo: "assets/hufflepuff.jpg",
+      message: "You belong in Hufflepuff,<br>where they are just and loyal.<br>Those patient Hufflepuffs are true<br>and unafraid of toil"
     },
     slytherin: {
       name: "Slytherin",
@@ -54,7 +57,8 @@ window.onload = function onload() {
         "Being forced to speak in such a silly voice",
         "Draw your wand and stand your ground",
       ],
-      logo: "assets/",
+      logo: "assets/slytherin.jpg",
+      message: "In Slytherin you'll make your real friends,<br>those cunning folks use any means<br>to achieve their ends."
     },
   };
   const quiz = {
@@ -250,16 +254,19 @@ window.onload = function onload() {
     choices.forEach((element) => {
       const inputContainer = document.createElement("div");
       const radio = document.createElement("input");
-      const choice = document.createElement("p");
+      const choice = document.createElement("div");
+      const radioContainer = document.createElement("div");
 
       radio.type = "radio";
       radio.name = "choice";
       radio.value = element.value;
       choice.className = "choice";
       inputContainer.className = "input-container";
+      radioContainer.className = "radio-style";
 
       choice.innerHTML = element.description;
-      inputContainer.append(radio, choice);
+      radioContainer.appendChild(radio);
+      inputContainer.append(radioContainer, choice);
       form.appendChild(inputContainer);
     });
     choicesContainer.appendChild(form);
@@ -279,21 +286,6 @@ window.onload = function onload() {
     return quizCards;
   };
 
-  const checkForTies = (tallyResults) => {
-    const tallyValues = R.pipe(R.values, R.sortBy(byDESC))(tallyResults);
-    return R.equals(R.head(tallyValues), R.prop(1, tallyValues));
-  };
-
-  const submit = (quizData) => {
-    const choices = document.querySelectorAll("input");
-    for (i = 0; i < choices.length; i++) {
-      if (choices[i].checked)
-        quizData.chosen[quizData.questionIndex] = choices[i].value;
-    }
-    quizData.questionIndex += 1;
-    return startQuiz(quizData);
-  };
-
   const showResult = (tallyResults) => {
     return () => {
       const contentContainer = document.querySelector(".content-container");
@@ -301,13 +293,19 @@ window.onload = function onload() {
       const container = document.createElement("div");
       const houseFlag = document.createElement("img");
       const resultContainer = document.createElement("div");
+      const replayButton = document.createElement("button")
+      
       const result = Object.keys(tallyResults).reduce((prev, current) =>
         tallyResults[prev] > tallyResults[current] ? prev : current
       );
+      container.className = "container";
+      replayButton.innerHTML = "Replay"
+      
+      houseFlag.setAttribute("src", houses[result.toLowerCase()].logo);
+      resultContainer.innerHTML = `CONGRATULATIONS!<br><br>${houses[result.toLowerCase()].message}`;
+      replayButton.addEventListener("click", () => window.location.reload())
 
-      houseFlag.setAttribute("src", `assets/${result.toLowerCase()}.jpg`);
-      resultContainer.innerHTML = result;
-      container.append(houseFlag, resultContainer);
+      container.append(houseFlag, resultContainer, replayButton);
       contentContainer.appendChild(container);
     };
   };
@@ -317,6 +315,9 @@ window.onload = function onload() {
     const loadingText = document.createElement("p");
     const imgContainer = document.createElement("div");
     const gifImage = document.createElement("img");
+
+    loadingContainer.className = "container";
+    gifImage.id = "sortingHat";
     loadingText.innerHTML = "sorting...";
     gifImage.setAttribute("src", "assets/sorting-hat.gif");
     imgContainer.appendChild(gifImage);
@@ -324,10 +325,29 @@ window.onload = function onload() {
     return loadingContainer;
   };
 
-  const startQuiz = (quizData, numberOfquestions = 5) => {
-    console.log(quizData.chosen);
-    console.log(quizData.questionIndex);
+  const checkForTies = (tallyResults) => {
+    const tallyValues = R.pipe(R.values, R.sortBy(byDESC))(tallyResults);
+    return R.equals(R.head(tallyValues), R.prop(1, tallyValues));
+  };
 
+  const submit = (quizData) => {
+    const choices = document.querySelectorAll("input");
+    let choice;
+    for (i = 0; i < choices.length; i++) {
+      if (choices[i].checked) {
+        choice = choices[i].value;
+      }
+    }
+    if (choice === undefined) {
+      alert("Cannot proceed");
+    } else {
+      quizData.questionIndex += 1;
+      quizData.chosen[quizData.questionIndex] = choice
+      return startQuiz(quizData);
+    }
+  };
+
+  const startQuiz = (quizData, numberOfquestions = 5) => {
     const quiz = quizData.questions[quizData.questionIndex];
     const quizCards = document.querySelector("#quizCards");
 
@@ -336,11 +356,7 @@ window.onload = function onload() {
     });
 
     if (quizData.questionIndex < numberOfquestions) {
-      const card = generateCard(
-        ` ${quizData.questionIndex}${quiz.question}`,
-        quiz.image,
-        quiz.choices
-      );
+      const card = generateCard(quiz.question, quiz.image, quiz.choices);
       quizCards.appendChild(card);
       const nextBtn = document.querySelector("#next");
       nextBtn.addEventListener("click", () => submit(quizData));
@@ -348,26 +364,15 @@ window.onload = function onload() {
       //end
 
       const tallyResults = R.countBy(R.identity, R.values(quizData.chosen));
-      console.log(tallyResults);
-
+console.log(tallyResults)
       if (checkForTies(tallyResults)) {
         numberOfquestions += 1;
         return startQuiz(quizData, (numberOfquestions += 1)); //if has tie, startQuiz again
       } else {
         quizCards.appendChild(sortingHat());
-        setTimeout(showResult(tallyResults), 3000);
+        setTimeout(showResult(tallyResults), 5000);
       }
     }
-  };
-
-  const openNav = () => {
-    document.getElementById("mySidenav").style.width = "100px";
-    document.getElementById("main").style.marginLeft = "100px";
-  };
-
-  const closeNav = () => {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
   };
 
   const proceedToQuiz = () => {
@@ -380,6 +385,20 @@ window.onload = function onload() {
     contentContainer.appendChild(generateQuizCard());
 
     startQuiz(quiz);
+  };
+
+  const openNav = () => {
+    const overlay = document.querySelector("#black-overlay");
+    const sideNav = document.querySelector("#sideNav");
+    overlay.className = "";
+    overlay.style.backgroundColor = "rgba(0,0,0,0.7)";
+    sideNav.style.width = "250px";
+  };
+
+  const closeNav = () => {
+    const overlay = document.querySelector("#black-overlay");
+    overlay.className = "hide";
+    sideNav.style.width = "0";
   };
 
   hamburgerIcon.addEventListener("click", openNav);

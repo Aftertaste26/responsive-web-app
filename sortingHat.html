@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RESPONSIVE WEB APP</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="node_modules/ramda/dist/ramda.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="sideNav">
       <a href="javascript:void(0)" class="closebtn"><div>&times;</div></a>
-      <a id="menu-content" href="#">
-        <div class="nav-icon icon" id="currentPage">
+      <a id="menu-content" href="index.html">
+        <div class="nav-icon icon">
           <img src="assets/icons/castle.png" alt="" />
           Home
         </div>
         </a>
-      <a id="menu-content" href="sortingHat.html">
-        <div class="nav-icon icon">
+      <a id="menu-content" href="#">
+        <div class="nav-icon icon" id="currentPage">
           <img src="assets/icons/hat-white.png" alt="" />
           Sorting Hat  
         </div>
@@ -37,13 +38,22 @@
           <img id="menu-icon" src="assets/menu-white.png" alt="">
         </div>
         <div class="title">
-        <h2>Home</h2>
+        <h2>Sorting hat quiz</h2>
       </div>
     </div>
     <!-- game content  -->
     <div id="black-overlay" class="hide"></div>
     <div id="content-container" class="content-container">
-        <div id="subtitle">Welcome to Hogwarts!</div>      
+      <div id="quiz-start-container">
+        <div id="subtitle">which house do you belong?</div>
+        <div class="quiz-start-img">
+          <img id="flag" src="assets/gryffindor.jpg" />
+          <img id="flag" src="assets/hufflepuff.jpg" />
+          <img id="flag" src="assets/ravenclaw.jpg" />
+          <img id="flag" src="assets/slytherin.jpg" />
+        </div>
+        <button id="quiz-start-btn" type="button">Find out</button>
+      </div>
   </div>
   
   </body>
