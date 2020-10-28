@@ -152,7 +152,8 @@ button:focus {
   visibility: hidden;
 }
 
-#card-container {
+.card-container {
+  text-align: center;
   border: 2px solid #eaeceb;
   box-shadow: 1px 2px 5px #eaeceb;
   width: 50%;
@@ -161,12 +162,12 @@ button:focus {
   padding: 1em;
 }
 
-.buttons {
+.choices-container {
   text-align: start;
   padding: 1em;
 }
 
-.input {
+.input-container {
   padding: 1em;
 }
 
