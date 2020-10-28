@@ -229,13 +229,17 @@ window.onload = function onload() {
     const img = document.createElement("img");
     const question = document.createElement("p");
     const choicesContainer = document.createElement("div");
+    const nextButton = document.createElement("button");
 
     //class names
     cardContainer.className = "card-container";
     imgContainer.className = "img-container";
     question.className = "question";
     choicesContainer.className = "choices-container";
+    nextButton.id = "next";
+    nextButton.setAttribute("type", "button");
 
+    nextButton.innerHTML = "Next";
     question.innerHTML = description;
     cardContainer.appendChild(question);
 
@@ -251,7 +255,6 @@ window.onload = function onload() {
       radio.type = "radio";
       radio.name = "choice";
       radio.value = element.value;
-      radio.className = "radio";
       choice.className = "choice";
       inputContainer.className = "input-container";
 
@@ -260,12 +263,14 @@ window.onload = function onload() {
       form.appendChild(inputContainer);
     });
     choicesContainer.appendChild(form);
-    cardContainer.appendChild(choicesContainer);
+    cardContainer.append(choicesContainer, nextButton);
 
     return cardContainer;
   };
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  const byDESC = (a, b) => b - a;
 
   const generateQuizCard = () => {
     const quizCards = document.createElement("div");
@@ -274,83 +279,86 @@ window.onload = function onload() {
     return quizCards;
   };
 
-  const choicesClicked = (quizData) => (event) => {
-    if (event.target.tagName == "INPUT") {
-      quizData.chosen[quizData.questionIndex] = event.target.value;
-
-      if (quizData.questionIndex != quizData.questions.length - 1) {
-        quizData.questionIndex += 1;
-        startQiuz(quizData);
-      }
-    }
+  const checkForTies = (tallyResults) => {
+    const tallyValues = R.pipe(R.values, R.sortBy(byDESC))(tallyResults);
+    return R.equals(R.head(tallyValues), R.prop(1, tallyValues));
   };
 
-  const startQiuz = (quizData) => {
+  const submit = (quizData) => {
+    const choices = document.querySelectorAll("input");
+    for (i = 0; i < choices.length; i++) {
+      if (choices[i].checked)
+        quizData.chosen[quizData.questionIndex] = choices[i].value;
+    }
+    quizData.questionIndex += 1;
+    return startQuiz(quizData);
+  };
+
+  const showResult = (tallyResults) => {
+    return () => {
+      const contentContainer = document.querySelector(".content-container");
+      contentContainer.innerHTML = ""; //erase data
+      const container = document.createElement("div");
+      const houseFlag = document.createElement("img");
+      const resultContainer = document.createElement("div");
+      const result = Object.keys(tallyResults).reduce((prev, current) =>
+        tallyResults[prev] > tallyResults[current] ? prev : current
+      );
+
+      houseFlag.setAttribute("src", `assets/${result.toLowerCase()}.jpg`);
+      resultContainer.innerHTML = result;
+      container.append(houseFlag, resultContainer);
+      contentContainer.appendChild(container);
+    };
+  };
+
+  const sortingHat = () => {
+    const loadingContainer = document.createElement("div");
+    const loadingText = document.createElement("p");
+    const imgContainer = document.createElement("div");
+    const gifImage = document.createElement("img");
+    loadingText.innerHTML = "sorting...";
+    gifImage.setAttribute("src", "assets/sorting-hat.gif");
+    imgContainer.appendChild(gifImage);
+    loadingContainer.append(imgContainer, loadingText);
+    return loadingContainer;
+  };
+
+  const startQuiz = (quizData, numberOfquestions = 5) => {
+    console.log(quizData.chosen);
+    console.log(quizData.questionIndex);
+
     const quiz = quizData.questions[quizData.questionIndex];
     const quizCards = document.querySelector("#quizCards");
-    const card = generateCard(
-      ` ${quizData.questionIndex}${quiz.question}`,
-      quiz.image,
-      quiz.choices
-    );
 
     quizCards.childNodes.forEach((child) => {
       if (child.className === "card-container") child.remove();
     });
 
-    card.addEventListener("click", choicesClicked(quizData));
-
-    ///////////////////////////////////////////////////////////////////////////////////////////
-    /* 
-# needs refactor 
-# fix existing bug.
-*/
-
-    if (quizData.questionIndex == 6) {
-      card.removeEventListener("click", choicesClicked(quizData));
-      quizCards.innerHTML = `<h1>${JSON.stringify(
-        tally(Object.values(quizData.chosen))
-      )}</h1>`;
-    } else if (quizData.questionIndex < 5) {
+    if (quizData.questionIndex < numberOfquestions) {
+      const card = generateCard(
+        ` ${quizData.questionIndex}${quiz.question}`,
+        quiz.image,
+        quiz.choices
+      );
       quizCards.appendChild(card);
+      const nextBtn = document.querySelector("#next");
+      nextBtn.addEventListener("click", () => submit(quizData));
     } else {
-      console.log(
-        "has a tie",
-        hasTie(R.map((x) => x.count, tally(Object.values(quizData.chosen))))
-      );
+      //end
 
-      const tie = hasTie(
-        R.map((x) => x.count, tally(Object.values(quizData.chosen)))
-      );
-      if (tie) {
-        quizCards.appendChild(card);
+      const tallyResults = R.countBy(R.identity, R.values(quizData.chosen));
+      console.log(tallyResults);
+
+      if (checkForTies(tallyResults)) {
+        numberOfquestions += 1;
+        return startQuiz(quizData, (numberOfquestions += 1)); //if has tie, startQuiz again
       } else {
-        quizCards.innerHTML = `<h1>${JSON.stringify(
-          tally(Object.values(quizData.chosen))
-        )}</h1>`;
+        quizCards.appendChild(sortingHat());
+        setTimeout(showResult(tallyResults), 3000);
       }
     }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////
   };
-
-  const hasTie = (list) => {
-    const newList = [...list];
-    newList.sort((x, y) => y - x);
-    const highest = newList[0];
-    console.log(list.filter((x) => x == highest));
-    return list.filter((x) => x == highest).length > 1;
-  };
-  const tally = (list) =>
-    list.reduce(
-      (acc, element) =>
-        acc.some((x) => x.value == element)
-          ? acc.map((x) =>
-              x.value == element ? { value: x.value, count: (x.count += 1) } : x
-            )
-          : [...acc, { value: element, count: 1 }],
-      []
-    );
 
   const openNav = () => {
     document.getElementById("mySidenav").style.width = "100px";
@@ -371,7 +379,7 @@ window.onload = function onload() {
     const contentContainer = document.querySelector("#content-container");
     contentContainer.appendChild(generateQuizCard());
 
-    startQiuz(quiz);
+    startQuiz(quiz);
   };
 
   hamburgerIcon.addEventListener("click", openNav);
